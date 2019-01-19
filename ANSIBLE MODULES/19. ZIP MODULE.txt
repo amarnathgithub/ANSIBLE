@@ -1,0 +1,23 @@
+zip module creates compressed archive just like tar and gzip in linux
+
+
+
+
+# vi zip.yml
+---------------------------------------------------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  user: ansible
+  sudo: true
+
+  tasks:
+  - name: Ansible zip file example
+    archive:
+      path: /etc_bckp/etc.tar         //this tar file will be gziped o/p:-etc.tar.gz 
+      
+-------------------------------------------------------------------------------------------
+
+
+# ansible-playbook zip.yml

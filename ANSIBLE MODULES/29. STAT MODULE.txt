@@ -1,0 +1,45 @@
+USECASE:-
+========
+	STAT module tells you wheather the object is directory/link/file
+
+
+
+
+# vi stat.yml
+-------------------------------------------------------------------------
+---
+- hosts: host2.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: to check if object is file/dir/link and that exists
+    stat:
+      path: /ansible/playbooks/mount.yml--------------->file path
+    register: output
+
+  - debug:
+      msg: "The file or directory exists"
+    when: output.stat.exists and output.stat.isreg
+----------------------------------------------------------------------
+
+
+# ansible-playbook stat.yml
+
+
+if /ansible/playbooks/mount.yml is a file, and you use isreg, then it will print debug msg since the file exists, if the file didnt
+exist then it will skip
+
+simillarly you can check for directories by using isdir..............links by islink
+
+
+=============
+paramaeters:-
+=============
+1. isdir = used for directories
+
+2. isreg = used for files
+ 
+3. islnk = used for links

@@ -1,0 +1,24 @@
+USECASE:-
+========
+	REGISTER module store the variable and use it for later like using in templates, conditions, debuging.....
+
+
+
+
+# vi register.yml
+--------------------------------------------
+---
+- hosts: all
+  connection: ssh
+  gather_facts: no
+  user: ansible
+
+  tasks:
+    - name: register module
+      command: uptime
+      register: result                       //result is a variable which stores uptime output
+
+#   - debug: var=result
+    - debug: msg="{{ result.stdout }}"        //result.stdout
+
+-------------------------------------------

@@ -1,0 +1,24 @@
+USECASE:-
+========
+	GET_URL module is used to download files from repo/web just like wget in linux
+
+
+
+# vi get_url.yml
+----------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  user: ansible
+  sudo: true
+  gather_facts: no
+
+  tasks:
+  - name: download jenkins repo file
+    get_url:
+      url: "http://wtfismyip.com/json"
+      dest: /home/downloads
+
+-------------------------------------------
+
+#ansible-playbook get_url.yml

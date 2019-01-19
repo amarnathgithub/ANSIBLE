@@ -1,0 +1,81 @@
+USECASE:-
+=======
+	LINEINFILE module is used to insert a text/line, remove an exisiting line, replace a textline, modify an existing line in a
+file. this module deals only with single lines*
+
+
+
+
+
+cat /hosts.txt
+-----------------------------------------------------------
+welcome to ansible line in file module
+hope doing great
+lets begin how to use lineinfile module
+but before that carefully read lineinfile module
+192.168.197.202 host1.com
+192.168.197.201 host2.com
+bye
+gud night
+-----------------------------------------------------------
+
+
+
+# vi lineinfile.yml
+----------------------------------------------------------------------------------------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  user: ansible
+  sudo: true
+
+  tasks:
+ - name: adding a line in beging of the file
+    lineinfile:
+       path: /hosts.txt                //location of the file
+       line: 'forgot to say hi'       //this line parameter used to insert text
+       insertbefore: BOF             // this choice lets you tell where to put that text in first/last/middle
+
+  - name: removing the last line
+    lineinfile:
+       path: /hosts.txt
+       line: 'gud night'
+       state: absent
+
+  - name: removing a line using expression
+    lineinfile:
+       path: /hosts.txt
+       regexp: '^gud'
+       state: absent
+
+  - name: replacing text
+    lineinfile:
+       path: /hosts.txt
+       regexp: '^192\.168\.197\.201'
+       line: '192.168.197.199 www.host2.com'
+
+  - name: inserting a line before a line
+    lineinfile:
+       path: /hosts.txt
+       line: '10.0.0.1 fb.com'
+       insertbefore: '192.168.197.202 host1.com'
+
+  - name: uncomment a line
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+=========
+choice:-
+=========
+1. regexp = checks with particular expression (if we give # then lineinfile module checks with #)
+
+2. eof = end of the file
+
+3. bof = beging of the file
+
+4. 

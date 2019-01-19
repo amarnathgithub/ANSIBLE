@@ -1,0 +1,49 @@
+USECASE:-
+========
+	TEMPLATE module lets you copy dynamic data from source to destination
+
+
+
+EX:- on server1(host1.com) there is a file123 which contains some data like this "my hostname is host1.com". now you have 
+server2(host2.com) when you copy file123 from server1 to server2 we should see the data like "my hostname is host2.com". this is why
+we use template module
+
+-->generally used to copy config files we use this
+
+
+
+POINTS TO REMEMBER:-
+===================
+*source file always ends with j2 extension Ex:-basic.j2
+ The destination file will not have .j2 extension  Ex:- basic
+
+
+
+# vi basic.j2
+----------------------------------------
+hi
+hello
+my hostname is {{ inventory_hostname }}	
+-----------------------------------------
+
+
+
+
+# vi template.yml
+----------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: template module
+    template:
+      src: /basic.j2
+      dest: /home/ansible/basic
+-------------------------------------
+
+#ansible-playbook template.yml
+

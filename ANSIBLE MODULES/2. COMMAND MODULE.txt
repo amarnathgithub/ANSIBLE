@@ -1,0 +1,27 @@
+USECASE:-
+---------
+	COMMAND module is used to run only bash commands. also we run some commands when we dont have ansible modules
+
+
+Idempotency = no
+
+
+
+
+
+# vi command.yml
+=======================================
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: command module
+    command: touch /home/ansible/file123
+========================================
+
+
+#ansible-playbook command.yml

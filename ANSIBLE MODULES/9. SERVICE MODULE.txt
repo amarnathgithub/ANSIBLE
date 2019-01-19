@@ -1,0 +1,29 @@
+USECASE:-
+========
+	SERVICE module is used to start, stop, restart, enable service
+
+
+
+# vi service.yml
+-------------------------------------------------------------
+---
+- hosts: all
+  connection: ssh
+  gather_facts: no
+  user: ansible
+  sudo: true
+
+  tasks:
+  - name: Start service httpd, if not running
+    service:
+      name: httpd
+      state: started
+
+  - name: install finger command and permenantly on
+    service:
+      name: finger
+      state: started
+      enabled: yes
+-----------------------------------------------------------------
+
+# ansible-playbook service.yml

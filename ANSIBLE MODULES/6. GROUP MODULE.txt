@@ -1,0 +1,23 @@
+USECASE:-
+=======
+	GROUP module is used to create/delete/modify a new group
+
+
+
+# vi group.yml
+----------------------------------------
+---
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: creating a devops group
+    group:
+      name: devops
+      state: present
+----------------------------------------
+
+# ansible-playbook group.yml

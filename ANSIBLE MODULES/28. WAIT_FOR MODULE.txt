@@ -1,0 +1,7 @@
+USECASE:-
+========
+	WAIT_FOR actually waits for something before continuing like time, port, file.....
+
+
+manikanta whatsapp
+

@@ -1,0 +1,21 @@
+USECASE:-
+=======
+	PING module lets check two or more servers are communicating or not
+
+
+
+# vi ping.yml
+=========================
+---
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: ping module
+    ping:
+=========================
+
+#ansible-palybook ping.yml

@@ -1,0 +1,31 @@
+USECASE:-
+========
+	UNARCHIVE modules is unzipping the files just like tar and unzip in linux
+
+
+
+# vi unarchive.yml
+----------------------------------------------------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: downloading from nagios site and unarchive the zip file
+    unarchive:
+     src: https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.3.4.tar.gz
+     dest: /opt/
+     remote_src: yes
+ 
+  tasks:
+  - name: unarchive the zip file to /opt directory
+    unarchive:
+     src: /nagios/nagios-4.3.4.tar.gz
+     dest: /opt/
+     remote_src: yes
+-----------------------------------------------------------------------------------------------
+
+#ansible-playbook unarchive.yml

@@ -1,0 +1,35 @@
+USECASE:-
+=======
+	MOUNT module is used to mount filesystem with mount point
+
+
+
+# vi mount.yml
+---------------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  user: ansible
+  sudo: true
+
+  tasks:
+  - name: unmounting /dev/sr0 with /media/centos7
+    mount:
+      path: /media/centos7                      //mountpoint
+      src: /dev/sr0                            //device-name
+      state: unmounted
+----------------------------------------------------------
+
+# ansible-playbook mount.yml
+
+
+
+
+=======
+state:-
+=======
+1. mounted = mounted and there wil be an entry in /etc/fstab
+2. present = doesnt mount but there will be an entry specified in /etc/fstab
+3. unmounted
+4. absent

@@ -1,0 +1,33 @@
+USECASE:-
+========
+	GIt module is used to perform git oerations like install, push, fetch, config.....
+
+
+
+# vi git.yml
+-------------------------------------------------------------
+---
+- hosts: host2.com
+  connection: ssh
+  gather_facts: no
+  user: ansible
+  sudo: true
+
+  tasks:
+  - name: pull from git
+    git:
+        repo: https://github.com/kvvmanikanth/demo.git
+        dest: /git
+        update: yes
+        version: master
+
+  - name: configuring git
+    git_config:
+        name: user.email
+        scope: global
+        value: kommoju.manikanth@gmail.com
+
+--------------------------------------------------------------
+
+
+#ansible-playbook git.yml

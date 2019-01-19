@@ -1,0 +1,24 @@
+USECASE:-
+========
+	YUM/APT module is used to install/remove/upgrade packages
+
+
+
+# vi yum.yml
+-------------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: install finger command
+    yum:
+     name: finger
+     state: present
+     update_cache: yes   //updating yum repo
+---------------------------------------------------------
+
+#ansible-playbook yum.yml

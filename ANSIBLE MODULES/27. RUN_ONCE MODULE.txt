@@ -1,0 +1,36 @@
+USECASE:-
+========
+	RUN_ONCE module a playbook has many tasks which will execute on many hosts, but sometimes you need to execute either
+playbook/single task on single host that can be done using only run_once module
+
+
+*by default this module executes on first host in the inventory file but you can delegate to specfic host
+
+
+# vi run_once.yml
+---------------------------------------------------
+---
+- hosts: all
+  connection: ssh
+  user: ansible
+  sudo: true
+  gather_facts: no
+
+  tasks:
+   - name: install telnet
+     command: yum install -y telnet
+     run_once: true
+     delegate_to: host1.com
+---------------------------------------------------
+
+
+# ansible-playbook run_once.yml
+
+
+
+my inventory--> vi /etc/ansible/hosts
+-------------------------------------
+[demo]
+host2.com
+host1.com
+-------------------------------------

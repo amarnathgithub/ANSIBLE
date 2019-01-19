@@ -1,0 +1,38 @@
+PRE-REQUISITES:-
+==============
+1. ansible user must be created on all systems and put that user in visudo
+2. ssh key exchange must be done between ansible master and remote
+3. ansible master must be linux 
+4. >python 2.6
+
+
+============
+INSTALLATION:-
+============
+
+1. Enable epel repo
+   #yum install -y epel-release
+
+
+2. update yum repo
+   #yum update -y
+
+
+3. install ansible
+   #yum install ansible (or)
+   #yum install -y git python python-devel python-pip openssl ansible
+
+
+4. check ansible version
+   #ansible --version
+
+
+5. ping you ansible localhost server to receive pong
+   #ansible localhost -m ping
+
+
+6. edit ansible config file
+   #vi /etc/ansible/ansible.cfg
+   *unhash inventory line and sudo_user
+
+ 

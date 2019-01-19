@@ -1,0 +1,9 @@
+USECASE:-
+========
+	FETCH module lets you copy from remote server to local machine (just like copy but reverse order)
+
+
+
+
+# vi fech.yml
+--------------------------------------------------

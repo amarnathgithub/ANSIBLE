@@ -1,0 +1,45 @@
+USECASE:-
+========
+	SCRIPT module let local script transfer to remote system and execute it
+
+ex:- we have written a script which is in local hohst. now we transfer it to remote system and execute on it, but in ansible script
+module takes care of transfering and executing it
+
+
+
+
+# vi /ansible/playbooks/script1.sh
+-----------------------------------------------
+#! /bin/sh
+sudo yum install -y telnet
+
+if [ $? -ne 0 ]; then
+    echo ' not executed'
+else
+    echo "telnet installed"
+fi
+
+------------------------------------------------
+
+
+
+
+
+# vi script.yml
+----------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: execute script on host1
+    script: /ansible/playbooks/script1.sh
+    register: result
+  - debug: var=result
+  - debug: msg="{{ result.stdout }}"
+--------------------------------------------------
+
+#ansible-playbook script.yml

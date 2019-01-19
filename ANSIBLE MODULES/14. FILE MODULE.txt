@@ -1,0 +1,32 @@
+USECASE:-
+=======
+	FILE module creates files by default, directories, links.. and you can also apply permisions
+
+
+
+
+# vi file.yml
+--------------------------------------------------------
+---
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: file module
+    file:
+        path: /home/ansible/Desktop/file1234
+        state: touch
+        mode: 0644
+
+  - name: directory module
+    file:
+        path: /home/ansible/Desktop/manikanth45
+        state: directory
+        mode: 0755
+
+------------------------------------------------------
+
+#ansible-playbook file.yml

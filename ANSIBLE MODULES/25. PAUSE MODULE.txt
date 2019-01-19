@@ -1,0 +1,36 @@
+USECASE:-
+========
+	PAUSE module lets you pause for specfic amount of time. This module is used when one task executed on one server and to 
+connect to other server it takes some amount of time because of network latency. just like sleep command in linux
+
+
+
+
+# vi pause.yml
+-----------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: check date
+    command: date
+    register: result
+  - debug: msg={{result.stdout}}
+
+  - pause: seconds=3
+
+  - name: check date
+    command: date
+    register: result
+  - debug: msg={{result.stdout}}
+-----------------------------------------------
+
+#anisble-playbook pause.yml
+
+
+
+*here first tasks executes and pauses for 3 sec and then second tasks executes

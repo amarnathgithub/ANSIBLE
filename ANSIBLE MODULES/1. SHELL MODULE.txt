@@ -1,0 +1,24 @@
+USECASE:-
+========
+	SHELL module is to run any shell commands like bash, korn, c
+
+
+Idempotency = no
+
+
+# vi shell.yml
+-----------------------------------------
+--
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: shell module
+    shell: yum list installed |grep ssh
+------------------------------------------
+
+
+#ansible-playbook shell.yml

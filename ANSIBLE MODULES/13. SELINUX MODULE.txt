@@ -1,0 +1,23 @@
+USECASE:-
+=======
+	SELINUX module is used to enable/disable selinux policy
+
+
+
+# vi selinux.yml
+---------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  user: ansible
+  sudo: true
+
+  tasks:
+  - name: enable selinux
+    selinux:
+      policy: targeted
+      state: enforcing
+---------------------------------------------
+
+#ansible-playbook selinux.yml

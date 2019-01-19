@@ -1,0 +1,3 @@
+USECASE:-
+========
+	DOCKER module is used to build images, run containers, push/pull images

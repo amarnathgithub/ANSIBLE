@@ -1,0 +1,26 @@
+USECASE:-
+========
+	RAW module is similar to command and shell module but not recomended to use. To execute this we dont need to have python 
+installed on remote system.
+
+
+Idempotency = no
+
+
+# vi raw.yml
+---------------------------------------------------------
+---
+- hosts: all
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: raw module
+    raw: userdel -r xyz
+  - name: raw module2
+    raw: /usr/bin/uptime >> /home/ansible/uptime.log
+------------------------------------------------------------                        
+
+#ansible-playbook raw.yml

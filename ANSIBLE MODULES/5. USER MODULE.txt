@@ -1,0 +1,33 @@
+USECASE:-
+========
+	USER module is used to create/delete, managing password, add/removing a user from group
+
+
+
+# vi user.yml
+--------------------------------
+---
+- hosts: all
+  connection: ssh
+  sudo: true
+  user: ansible
+  gather_facts: no
+
+  tasks:
+  - name: create an user
+    user:
+      name: pinky
+
+  - name: delet an user
+    user:
+      name: raju
+      state: absent
+
+----------------------------------
+
+# ansible-playbook user.yml
+
+
+
+*when a user is created by default home directory, shell, uid, gid, primary group will be created
+ when delete an user home directory will not be deleted

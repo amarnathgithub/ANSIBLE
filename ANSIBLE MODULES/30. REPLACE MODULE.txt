@@ -1,0 +1,27 @@
+USECASE:-
+========
+	REPLACE module is used to replace the string. just like sed in linux
+
+
+Ex:- there is a word "hello" in file1, now you need to change that word with "hi"
+
+
+
+
+#vi replace.yml
+----------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+  tasks:
+  - name: replace hello with hi
+    replace:
+      path: /file1
+      regexp: 'hello'
+      replace: "hi"
+----------------------------------------------
+
+#ansible-playbook replace.yml

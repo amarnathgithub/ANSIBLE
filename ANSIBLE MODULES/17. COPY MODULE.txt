@@ -1,0 +1,29 @@
+USECASE:-
+========
+	COPY module is used to copy files/directories from source to destination
+
+
+Ex:-  i have a file abc.txt in /home/ansible/host2/abc.txt. now i have to copy to remote server host1 in the location 
+/home/ansible/host1 copy module lets you copy files/directories from local machine to remote server
+
+
+# vi copy.yml
+=============================================================
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: false
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: copy module
+    copy:
+      src: /home/ansible/host2/abc.txt
+      dest: /home/ansible/host1
+
+===============================================================
+
+#ansible-playbook copy.yml
+
+

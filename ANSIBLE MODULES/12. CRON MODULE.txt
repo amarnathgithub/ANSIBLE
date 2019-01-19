@@ -1,0 +1,27 @@
+USECASE:-
+=======
+	CRON module is similar to linux crontab(to schedule jobs)
+
+
+
+
+# vi cron.yml
+---------------------------------------------------------
+---
+- hosts: host1.com
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: setting up cron job at 13th hr 6th min
+    cron:
+      name: print "hi" message
+      minute: "6"
+      hour: "13"
+      job: echo "hi"
+      user: root
+-----------------------------------------------------------
+
+# ansible-playbook cron.yml

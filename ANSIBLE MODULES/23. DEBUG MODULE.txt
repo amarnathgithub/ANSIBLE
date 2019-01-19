@@ -1,0 +1,37 @@
+USECASE:-
+========
+	DEBUG module prints statement as output while executing, so we can debug if something goes wrong
+
+
+# vi debug.yml
+----------------------------------------
+---
+- hosts: all
+  connection: ssh
+  gather_facts: no
+  sudo: true
+  user: ansible
+
+  tasks:
+  - name: debug module
+    debug:
+       msg: "Hello india"
+       verbosity: 3
+------------------------------------------
+
+
+# ansible-playbook debug.yml
+
+
+*in the output we see "hello india" priniting
+
+
+===============
+parameters:-
+===============
+1. msg parameter is used to print custom messages
+
+2. var is used to store output and that output is printed while executing
+
+3. verbosity (if you define verbose as 3) then when executing playbook you need to give ansible-playbook debug.yml -vvv
+   then only it will debug else nothing will be printed
